@@ -22,11 +22,13 @@
 
   <ItemGroup>
     <None Remove="ClientApp\app\components\quiz\quiz-list.component.ts" />
+    <None Remove="ClientApp\app\components\quiz\quiz.component.ts" />
     <None Remove="ClientApp\app\interfaces\quiz.ts" />
   </ItemGroup>
 
   <ItemGroup>
     <TypeScriptCompile Include="ClientApp\app\components\quiz\quiz-list.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\quiz\quiz.component.ts" />
     <TypeScriptCompile Include="ClientApp\app\interfaces\quiz.ts" />
   </ItemGroup>
 
