@@ -16,6 +16,7 @@ import { AnswerListComponent } from './components/answer/answer-list.component';
 import { AnswerEditComponent } from './components/answer/answer-edit.component';
 import { ResultListComponent } from './components/result/result-list.component';
 import { ResultEditComponent } from './components/result/result-edit.component';
+import { QuizSearchComponent } from './components/quiz/quiz-search.component';
 import { AboutComponent } from './components/about/about.component';
 import { LoginComponent } from './components/login/login.component';
 import { PageNotFoundComponent } from './components/pagenotfound/pagenotfound.component';
@@ -34,6 +35,7 @@ import { PageNotFoundComponent } from './components/pagenotfound/pagenotfound.co
         AnswerEditComponent,
         ResultListComponent,
         ResultEditComponent,
+        QuizSearchComponent,
         AboutComponent,
         LoginComponent,
         PageNotFoundComponent

@@ -1,31 +1,31 @@
 ﻿<h2>{{title}}</h2>
-<div class="result-edit">
+<div class="result-edit form-group">
     <div>
         <label for="text">Result text:</label>
         <br />
-        <textarea id="text" [(ngModel)]="result.Text"
+        <textarea id="text" [(ngModel)]="result.Text" class="form-control"
                   placeholder="enter a suitable text..."></textarea>
     </div>
 
     <div>
         <label for="MinValue">Minimum Score Value:</label>
         <br />
-        <input type="number" id="MinValue" name="MinValue"
+        <input type="number" id="MinValue" name="MinValue" class="form-control"
                [(ngModel)]="result.MinValue" />
     </div>
 
     <div>
         <label for="MaxValue">Maximum Score Value:</label>
         <br />
-        <input type="number" id="MaxValue" name="MaxValue"
+        <input type="number" id="MaxValue" name="MaxValue" class="form-control"
                [(ngModel)]="result.MaxValue" />
     </div>
 
     <div>
-        <input *ngIf="editMode" type="button" value="Apply Changes"
+        <input *ngIf="editMode" type="button" value="Apply Changes" class="btn btn-success"
                (click)="onSubmit(result)" />
-        <input *ngIf="!editMode" type="button" value="Create the Result!" (click)="onSubmit(result)" />
-        <input type="button" value="Cancel" (click)="onBack()" />
+        <input *ngIf="!editMode" type="button" value="Create the Result!" (click)="onSubmit(result)" class="btn btn-success" />
+        <input type="button" value="Cancel" (click)="onBack()" class="btn btn-default" />
     </div>
 
 </div>

@@ -1,16 +1,16 @@
 ﻿<h2>{{title}}</h2>
 <div class="question-edit">
-    <div>
+    <div class="form-group">
         <label for="text">Question text:</label>
         <br />
-        <textarea id="text" [(ngModel)]="question.Text"
+        <textarea id="text" [(ngModel)]="question.Text" class="form-control"
                   placeholder="enter a suitable text..."></textarea>
     </div>
     <div>
-        <input *ngIf="editMode" type="button" value="Apply Changes"
+        <input *ngIf="editMode" type="button" value="Apply Changes" class="btn btn-success"
                (click)="onSubmit(question)" />
-        <input *ngIf="!editMode" type="button" value="Create the Question!" (click)="onSubmit(question)" />
-        <input type="button" value="Cancel" (click)="onBack()" />
+        <input *ngIf="!editMode" type="button" value="Create the Question!" (click)="onSubmit(question)" class="btn btn-success" />
+        <input type="button" value="Cancel" (click)="onBack()" class="btn btn-default" />
     </div>
 
     <answer-list *ngIf="editMode" [question]="question"></answer-list>

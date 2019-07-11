@@ -1,16 +1,16 @@
 ﻿<h2>{{title}}</h2>
-<div class="answer-edit">
+<div class="answer-edit form-group">
     <div>
         <label for="text">Answer text:</label>
         <br />
-        <textarea id="text" [(ngModel)]="answer.Text"
+        <textarea id="text" [(ngModel)]="answer.Text" class="form-control"
                   placeholder="enter a suitable text..."></textarea>
     </div>
 
     <div>
         <label for="value">Score Value:</label>
         <br />
-        <select id="value" name="value" [(ngModel)]="answer.Value">
+        <select id="value" name="value" class="form-control" [(ngModel)]="answer.Value">
             <option *ngFor="let num of [-5,-4,-3,-2,-1,0,1,2,3,4,5]"
                     [value]="num">
                 {{num}}
@@ -19,10 +19,10 @@
     </div>
 
     <div>
-        <input *ngIf="editMode" type="button" value="Apply Changes"
+        <input *ngIf="editMode" type="button" value="Apply Changes" class="btn btn-success"
                (click)="onSubmit(answer)" />
-        <input *ngIf="!editMode" type="button" value="Create the Answer!" (click)="onSubmit(answer)" />
-        <input type="button" value="Cancel" (click)="onBack()" />
+        <input *ngIf="!editMode" type="button" value="Create the Answer!" (click)="onSubmit(answer)" class="btn btn-success" />
+        <input type="button" value="Cancel" (click)="onBack()" class="btn btn-default" />
     </div>
 </div>
 
