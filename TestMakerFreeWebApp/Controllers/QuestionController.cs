@@ -9,19 +9,10 @@ using Mapster;
 
 namespace TestMakerFreeWebApp.Controllers
 {
-    [Route("api/[controller]")]
-    public class QuestionController : Controller
+    public class QuestionController : BaseApiController
     {
-        #region Private Fields
-        private ApplicationDbContext DbContext;
-        #endregion
-
         #region Constructor
-        public QuestionController(ApplicationDbContext context)
-        {
-            // Instantiate the ApplicationDbContext through DI
-            DbContext = context;
-        }
+        public QuestionController(ApplicationDbContext context) : base(context) { }
         #endregion
 
         // GET api/question/all 
@@ -33,11 +24,7 @@ namespace TestMakerFreeWebApp.Controllers
                 .ToArray();
 
             return new JsonResult(
-                questions.Adapt<QuestionViewModel[]>(),
-                new JsonSerializerSettings()
-                {
-                    Formatting = Formatting.Indented
-                });
+                questions.Adapt<QuestionViewModel[]>(), JsonSettings);
         }
 
         #region RESTful conventions methods 
@@ -63,11 +50,7 @@ namespace TestMakerFreeWebApp.Controllers
             }
 
             return new JsonResult(
-                question.Adapt<QuestionViewModel>(),
-                new JsonSerializerSettings()
-                {
-                    Formatting = Formatting.Indented
-                });
+                question.Adapt<QuestionViewModel>(), JsonSettings);
         }
 
         /// <summary> 
@@ -100,11 +83,7 @@ namespace TestMakerFreeWebApp.Controllers
             DbContext.SaveChanges();
 
             // return the newly-created Question to the client.
-            return new JsonResult(question.Adapt<QuestionViewModel>(),
-                new JsonSerializerSettings()
-                {
-                    Formatting = Formatting.Indented
-                });
+            return new JsonResult(question.Adapt<QuestionViewModel>(), JsonSettings);
         }
 
         /// <summary> 
@@ -144,11 +123,7 @@ namespace TestMakerFreeWebApp.Controllers
             DbContext.SaveChanges();
 
             // return the updated Quiz to the client.
-            return new JsonResult(question.Adapt<QuestionViewModel>(),
-                new JsonSerializerSettings()
-                {
-                    Formatting = Formatting.Indented
-                });
+            return new JsonResult(question.Adapt<QuestionViewModel>(), JsonSettings);
         }
 
         /// <summary> 
