@@ -2,5 +2,5 @@
     Id: number;
     QuestionId: number;
     Text: string;
-    Value: number;
+    Value?: number;
 }

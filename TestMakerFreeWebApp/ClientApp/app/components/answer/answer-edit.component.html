@@ -1,28 +1,61 @@
 ﻿<h2>{{title}}</h2>
-<div class="answer-edit form-group">
-    <div>
-        <label for="text">Answer text:</label>
-        <br />
-        <textarea id="text" [(ngModel)]="answer.Text" class="form-control"
-                  placeholder="enter a suitable text..."></textarea>
-    </div>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="answer-edit form-group" [ngClass]="{ 'has-error has-feedback' : hasError('Text') }">
+        <div>
+            <label for="text">Answer text:</label>
+            <br />
+            <textarea id="text"
+                      formControlName="Text" required
+                      class="form-control"
+                      placeholder="enter a suitable text..."></textarea>
+            <span *ngIf="hasError('Text')"
+                  class="glyphicon glyphicon-remove form-control-feedback"
+                  aria-hidden="true"></span>
+            <div *ngIf="hasError('Text')"
+                 class="help-block">
+                Text is a required field: please insert a valid text.
+            </div>
+        </div>
 
-    <div>
-        <label for="value">Score Value:</label>
-        <br />
-        <select id="value" name="value" class="form-control" [(ngModel)]="answer.Value">
-            <option *ngFor="let num of [-5,-4,-3,-2,-1,0,1,2,3,4,5]"
-                    [value]="num">
-                {{num}}
-            </option>
-        </select>
-    </div>
+        <div class="form-group" [ngClass]="{ 'has-error has-feedback' : hasError('Value') }">
+            <label for="value">Score Value:</label>
+            <br />
+            <select id="value"
+                    formControlName="Value" required
+                    class="form-control">
+                <option value="">Pick a value...</option>
+                <option *ngFor="let num of [-5,-4,-3,-2,-1,0,1,2,3,4,5]"
+                        [value]="num">
+                    {{num}}
+                </option>
+            </select>
+            <div *ngIf="hasError('Value')"
+                 class="help-block">
+                Please select a valid number between -5 and 5.
+            </div>
+        </div>
 
-    <div>
-        <input *ngIf="editMode" type="button" value="Apply Changes" class="btn btn-success"
-               (click)="onSubmit(answer)" />
-        <input *ngIf="!editMode" type="button" value="Create the Answer!" (click)="onSubmit(answer)" class="btn btn-success" />
-        <input type="button" value="Cancel" (click)="onBack()" class="btn btn-default" />
-    </div>
-</div>
+        <!--<div>
+            <input *ngIf="editMode" type="button" value="Apply Changes" class="btn btn-success"
+                   (click)="onSubmit(answer)" />
+            <input *ngIf="!editMode" type="button" value="Create the Answer!" (click)="onSubmit(answer)" class="btn btn-success" />
+            <input type="button" value="Cancel" (click)="onBack()" class="btn btn-default" />
+        </div>-->
 
+        <button *ngIf="editMode" type="submit"
+                [disabled]="form.invalid"
+                class="btn btn-success">
+            Apply Changes
+        </button>
+        <button *ngIf="!editMode" type="submit"
+                [disabled]="form.invalid"
+                class="btn btn-success">
+            Create the Quiz!
+        </button>
+        <button type="submit"
+                (click)="onBack()"
+                class="btn btn-default">
+            Cancel
+        </button>
+    </div>
+</form>

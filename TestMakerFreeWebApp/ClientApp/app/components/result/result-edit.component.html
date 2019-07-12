@@ -1,31 +1,81 @@
 ﻿<h2>{{title}}</h2>
-<div class="result-edit form-group">
-    <div>
-        <label for="text">Result text:</label>
+<form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <div class="result-edit form-group" [ngClass]="{ 'has-error has-feedback' : hasError('Text') }">
+        <div>
+            <label for="text">Result text:</label>
+            <br />
+            <textarea id="text"
+                      formControlName="Text" required
+                      class="form-control"
+                      placeholder="enter a suitable text..."></textarea>
+            <span *ngIf="hasError('Text')"
+                  class="glyphicon glyphicon-remove form-control-feedback"
+                  aria-hidden="true"></span>
+            <div *ngIf="hasError('Text')"
+                 class="help-block">
+                Text is a required field: please insert a valid text.
+            </div>
+        </div>
         <br />
-        <textarea id="text" [(ngModel)]="result.Text" class="form-control"
-                  placeholder="enter a suitable text..."></textarea>
-    </div>
-
-    <div>
-        <label for="MinValue">Minimum Score Value:</label>
+        <div class="form-group" [ngClass]="{ 'has-error has-feedback' : hasError('MinValue') }">
+            <label for="MinValue">Minimum Score Value:</label>
+            <br />
+            <input type="number"
+                   id="MinValue"
+                   name="MinValue"
+                   class="form-control"
+                   formControlName="MinValue" />
+            <span *ngIf="hasError('MinValue')"
+                  class="glyphicon glyphicon-remove form-control-feedback"
+                  aria-hidden="true"></span>
+            <div *ngIf="hasError('MinValue')"
+                 class="help-block">
+                Insert a numeric value, or leave it blank to match everything
+                up to MaxValue.
+            </div>
+        </div>
         <br />
-        <input type="number" id="MinValue" name="MinValue" class="form-control"
-               [(ngModel)]="result.MinValue" />
-    </div>
-
-    <div>
-        <label for="MaxValue">Maximum Score Value:</label>
+        <div class="form-group" [ngClass]="{ 'has-error has-feedback' : hasError('MaxValue') }">
+            <label for="MaxValue">Maximum Score Value:</label>
+            <br />
+            <input type="number"
+                   id="MaxValue"
+                   name="MaxValue"
+                   class="form-control"
+                   formControlName="MaxValue" />
+            <span *ngIf="hasError('MaxValue')"
+                  class="glyphicon glyphicon-remove form-control-feedback"
+                  aria-hidden="true"></span>
+            <div *ngIf="hasError('MaxValue')"
+                 class="help-block">
+                Insert a numeric value, or leave it blank to match everything
+                up to MinValue.
+            </div>
+        </div>
         <br />
-        <input type="number" id="MaxValue" name="MaxValue" class="form-control"
-               [(ngModel)]="result.MaxValue" />
-    </div>
 
-    <div>
+        <!--<div>
         <input *ngIf="editMode" type="button" value="Apply Changes" class="btn btn-success"
                (click)="onSubmit(result)" />
         <input *ngIf="!editMode" type="button" value="Create the Result!" (click)="onSubmit(result)" class="btn btn-success" />
         <input type="button" value="Cancel" (click)="onBack()" class="btn btn-default" />
-    </div>
+    </div>-->
 
-</div>
+        <button *ngIf="editMode" type="submit"
+                [disabled]="form.invalid"
+                class="btn btn-success">
+            Apply Changes
+        </button>
+        <button *ngIf="!editMode" type="submit"
+                [disabled]="form.invalid"
+                class="btn btn-success">
+            Create the Quiz!
+        </button>
+        <button type="submit"
+                (click)="onBack()"
+                class="btn btn-default">
+            Cancel
+        </button>
+
+    </div>
+</form>
