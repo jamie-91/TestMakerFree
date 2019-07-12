@@ -16,13 +16,6 @@
                 Text is a required field: please insert a valid text.
             </div>
         </div>
-        
-        <!--<div>
-            <input *ngIf="editMode" type="button" value="Apply Changes" class="btn btn-success"
-                   (click)="onSubmit(question)" />
-            <input *ngIf="!editMode" type="button" value="Create the Question!" (click)="onSubmit(question)" class="btn btn-success" />
-            <input type="button" value="Cancel" (click)="onBack()" class="btn btn-default" />
-        </div>-->
 
         <button *ngIf="editMode" type="submit"
                 [disabled]="form.invalid"
@@ -42,4 +35,24 @@
 
         <answer-list *ngIf="editMode" [question]="question"></answer-list>
     </form>
+</div>
+
+<div class="panel panel-info"
+     style="margin-top: 20px;">
+    <div class="panel-heading">Form debug info</div>
+    <div class="panel-body">
+        <p><strong>Form value:</strong></p>
+        <div class="help-block">
+            {{ form.value | json }}
+        </div>
+        <p><strong>Form status:</strong></p>
+        <div class="help-block">
+            {{ form.status | json }}
+        </div>
+        <p><strong>Form activity log:</strong></p>
+        <div class="help-block">
+            <span *ngIf="activityLog"
+                  [innerHTML]="activityLog"></span>
+        </div>
+    </div>
 </div>
